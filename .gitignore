@@ -1,2 +1,3 @@
 .venv/
 fuel_prices.db
+*.pyc

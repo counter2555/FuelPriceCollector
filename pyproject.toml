@@ -1,0 +1,28 @@
+[project]
+name = "fuelpricedashboard"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Benedikt Limbacher",email = "benedikt@limbacher.net"}
+]
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "pydantic (>=2.12.5,<3.0.0)",
+    "requests (>=2.32.5,<3.0.0)",
+    "sqlalchemy (>=2.0.48,<3.0.0)",
+    "streamlit (>=1.54.0,<2.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+datamodel-code-generator = "^0.54.0"
+black = "^26.1.0"
+ruff = "^0.15.4"
+pytest = "^9.0.2"
+requests-mock = "^1.12.1"
+
