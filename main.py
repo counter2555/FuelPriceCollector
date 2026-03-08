@@ -40,10 +40,16 @@ if __name__ == "__main__":
 
     # fetch
     for station in stations:
+        if not station.prices or len(station.prices) == 0:
+            logging.info(
+                f"No price data for station: {station.name} at {station.location.address}, skipping..."
+            )
+            continue
         for price in station.prices or []:
             logging.info(
-                f"Processing station: {station.name}, fuel type: {price.fuelType}, price: {price.amount} EUR"
+                f"Processing station: {station.name} ({station.location.address}), fuel type: {price.fuelType}, price: {price.amount} EUR"
             )
+
             fuel_price_gauge.labels(
                 station_name=station.name,
                 lat=station.location.latitude,

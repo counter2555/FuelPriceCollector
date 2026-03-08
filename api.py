@@ -1,4 +1,5 @@
 import requests
+import logging
 from enum import Enum
 from models import GasStationPublic
 
@@ -25,4 +26,6 @@ class SpritpreisAPI:
         url = f"https://api.e-control.at/sprit/1.0/search/gas-stations/by-address?latitude={self.latitude}&longitude={self.longitude}&fuelType={self.fuel_type}&includeClosed={str(self.include_closed).lower()}"
         response = requests.get(url)
         response.raise_for_status()  # Raise an error for bad responses
-        return [GasStationPublic(**x) for x in response.json()]
+        stations = [GasStationPublic(**x) for x in response.json()]
+        logging.info(f"Fetched {len(stations)} gas stations from API.")
+        return stations
