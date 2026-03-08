@@ -22,7 +22,7 @@ if __name__ == "__main__":
     fuel_price_gauge = Gauge(
         "gas_station_fuel_price_euro",
         "Current fuel price at gas station",
-        ["station_name", "lat", "long", "fuel_type"],  # Dimensions
+        ["station_name", "lat", "long", "fuel_type", "address"],  # Dimensions
         registry=registry,
     )
 
@@ -48,6 +48,7 @@ if __name__ == "__main__":
                 lat=station.location.latitude,
                 long=station.location.longitude,
                 fuel_type=price.fuelType,
+                address=station.location.address,
             ).set(price.amount)
 
     logging.info("Pushing metrics to Prometheus Pushgateway...")
