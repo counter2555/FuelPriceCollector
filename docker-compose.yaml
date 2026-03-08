@@ -1,0 +1,22 @@
+
+services:
+  fuel-price-collector:
+    image: docker2.lan:5000/fuelpricecollector:latest
+    environment:
+      - LATITUDE=48.1913
+      - LONGITUDE=16.3041
+      - FUEL_TYPE=SUP
+      - PUSHGATEWAY_URL=docker2.lan:9091
+    restart: no
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "3"
+    deploy:
+      mode: replicated
+      replicas: 1
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: "300M"

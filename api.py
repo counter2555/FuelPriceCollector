@@ -13,7 +13,7 @@ class SpritpreisAPI:
         self,
         latitude: float,
         longitude: float,
-        fuel_type: FuelTypes,
+        fuel_type: str,
         include_closed: bool = True,
     ):
         self.latitude = latitude
@@ -22,7 +22,7 @@ class SpritpreisAPI:
         self.include_closed = include_closed
 
     def fetch_gas_stations(self) -> list[GasStationPublic]:
-        url = f"https://api.e-control.at/sprit/1.0/search/gas-stations/by-address?latitude={self.latitude}&longitude={self.longitude}&fuelType={self.fuel_type.value}&includeClosed={str(self.include_closed).lower()}"
+        url = f"https://api.e-control.at/sprit/1.0/search/gas-stations/by-address?latitude={self.latitude}&longitude={self.longitude}&fuelType={self.fuel_type}&includeClosed={str(self.include_closed).lower()}"
         response = requests.get(url)
         response.raise_for_status()  # Raise an error for bad responses
         return [GasStationPublic(**x) for x in response.json()]
