@@ -10,6 +10,7 @@ if __name__ == "__main__":
     )
 
     logging.info("Starting fuel price scraper...")
+    logging.info("Address enabled.")
     # get variables
     latitude = float(os.environ.get("LATITUDE", 48.2082))  # Default to Vienna
     longitude = float(os.environ.get("LONGITUDE", 16.3738))  # Default to Vienna
